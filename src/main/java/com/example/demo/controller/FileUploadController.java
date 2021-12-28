@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
-@RequestMapping("/files")
+@RequestMapping("/api/v1/files")
 public class FileUploadController {
 
     private final StorageService storageService;

@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/cars")
+@RequestMapping("/api/v1/cars")
 public class CarController {
     List<Car> cars = new ArrayList<>(Arrays.asList(
        new Car(1, "Ford", 200000),
