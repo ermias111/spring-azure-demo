@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.AuthRequest;
-import com.example.demo.dto.AuthResponse;
+import com.example.demo.dto.SigninRequest;
+import com.example.demo.dto.SigninResponse;
+import com.example.demo.dto.SignupRequest;
 import com.example.demo.security.JwtUtils;
 import com.example.demo.services.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,11 +24,13 @@ public class AuthController {
     @Autowired
     private MyUserDetailService userDetailService;
 
+
+
     @Autowired
     private JwtUtils jwtUtils;
 
-    @PostMapping
-    public ResponseEntity<?> signIn(@RequestBody AuthRequest authRequest) throws Exception{
+    @PostMapping(path = "/signin")
+    public ResponseEntity<?> signIn(@RequestBody SigninRequest authRequest) throws Exception{
 
         try{
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -42,6 +46,17 @@ public class AuthController {
 
         final String jwt = jwtUtils.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthResponse(jwt));
+        return ResponseEntity.ok(new SigninResponse(jwt));
+    }
+
+    @PostMapping(path = "/signup")
+    public ResponseEntity<?> signup(@RequestBody SignupRequest signupRequest) throws Exception{
+        try {
+            userDetailService.save(signupRequest);
+        }catch (Exception exception){
+            throw new Exception(exception);
+        }
+
+        return ResponseEntity.ok(HttpStatus.CREATED);
     }
 }

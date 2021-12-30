@@ -1,9 +1,26 @@
 package com.example.demo.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Car {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
+    @Column
     String name;
+
+    @Column
     Integer price;
+
+    public Car() {
+    }
+
+    public Car(String name, Integer price) {
+        this.name = name;
+        this.price = price;
+    }
 
     public Car(Integer id, String name, Integer price) {
         this.id = id;

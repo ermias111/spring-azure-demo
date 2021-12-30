@@ -1,9 +1,9 @@
 package com.example.demo.dto;
 
-public class AuthResponse {
+public class SigninResponse {
     private final String jwt;
 
-    public AuthResponse(String jwt) {
+    public SigninResponse(String jwt) {
         this.jwt = jwt;
     }
 

@@ -1,13 +1,13 @@
 package com.example.demo.dto;
 
-public class AuthRequest {
+public class SigninRequest {
     private String username;
     private String password;
 
-    public AuthRequest() {
+    public SigninRequest() {
     }
 
-    public AuthRequest(String username, String password) {
+    public SigninRequest(String username, String password) {
         this.username = username;
         this.password = password;
     }
